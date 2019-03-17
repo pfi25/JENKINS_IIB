@@ -1,0 +1,17 @@
+- name: Start QM
+  hosts: 192.168.1.253
+  remote_user: pablo
+
+  tasks:
+  - name: start QM
+    become: yes
+    become_method: su
+    become_user: mqm
+    shell: /opt/mqm/bin/strmqm QM | exit 0
+    notify: crear cola
+  handlers:
+  - name: crear cola
+    become: yes
+    become_method: su
+    become_user: mqm
+    shell: echo 'DEFINE QLOCAL(QL.PRUEBA.RS)' | /opt/mqm/bin/runmqsc QM | exit 0
