@@ -1,3 +1,3 @@
 #!/bin/bash
 echo 'Hola Mundo'
-ansible-playbook StartQM.yml -K
+/usr/local/bin/ansible-playbook StartQM.yml -K
